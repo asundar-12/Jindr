@@ -73,7 +73,7 @@
 	    </header>
 	    <footer>
 	      <div class='set'>
-		<button id='back'>Back</button>
+		<button id='back' v-on:click="home">Back</button>
 		<button id='next'>Next</button>
 	      </div>
 	    </footer>
@@ -83,7 +83,15 @@
 	</template>
 	
 	<script>
-	
+		export default {
+			name: 'Employer',
+			methods:{
+				home(){
+					this.$router.push("/");
+				},
+			
+			}
+		}
 	</script>
 	
 	<!-- Add "scoped" attribute to limit CSS to this component only -->

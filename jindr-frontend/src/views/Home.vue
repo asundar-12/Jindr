@@ -49,10 +49,15 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+	name: 'Home',
+	methods:{
+		employee(){
+			this.$router.push("/employee");
+		},
+		employer(){
+			this.$router.push("/employer");
+		},
+	}
 }
 </script>
 
