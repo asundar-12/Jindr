@@ -38,20 +38,20 @@ app.get("/get-job-by-id", async (req, res) => {
 const resetUsers = async () => {
     const users = await jobseekersDB.get()
     users.forEach((user) => {
-        user.ref.update({jobposterViewed: "false"})
+        user.ref.update({jobposterViewed: "false", jobPosterLiked: "false"})
     })
     console.log("users reseted")
 }
-// resetUsers()
+resetUsers()
 // FUNCTION TO RESET THE VIEWS OF JOBS BY JOBSEEKER
 const resetJobPostings = async () => {
     const jobs = await jobPostingsDB.get()
     jobs.forEach((job) => {
-        job.ref.update({jobseekerViewed: "false"})
+        job.ref.update({jobseekerViewed: "false", jobseekerLiked: "false"})
     })
     console.log("jobs reseted")
 }
-// resetJobPostings()
+resetJobPostings()
 
 
 

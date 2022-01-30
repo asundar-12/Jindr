@@ -7,8 +7,9 @@ router.use(express.json())
 var admin = require("firebase-admin");
 const db = admin.firestore(); 
 // // Firebase collections
-const employersDB = db.collection('Employers_List'); 
+const jobpostersDB = db.collection('Employers_List'); 
 const jobPostingsDB  = db.collection('Job_Postings'); 
+const jobseekersDB  = db.collection('Employee_Profile'); 
 
 
 router.post("/new-jobseeker", async (req, res) => {
