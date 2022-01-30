@@ -55,7 +55,6 @@ export default {
 	data(){
 		return{
 			front: true,
-			type: "home"
 		}
 	},
 	components:{
@@ -65,17 +64,16 @@ export default {
 		employee(){
 			// this.$router.push("/employee");
 			this.front = false;
-			this.type = "employee"
 			this.$store.commit("changeLoginType", "employee");
 		},
 		employer(){
 			// this.$router.push("/employer");
 			this.front = false;
-			this.type = "employer"
 			this.$store.commit("changeLoginType", "employer");
 		},
 		home(){
 			this.front = true;
+			this.$store.commit("changeLoginType", "home");
 		}
 	}
 }

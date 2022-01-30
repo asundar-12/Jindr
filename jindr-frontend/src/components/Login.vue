@@ -4,11 +4,14 @@
 			<h1 v-if="logintype=='employer'">JOB POSTING CREATION</h1>
             <h1 v-else>EMPLOYEE'S PROFILE</h1>
 			<div class='job'>
-			<img src='https://cdn.dribbble.com/users/3848091/screenshots/7827479/media/5f226eb6aa71d3b639a73d214e716db6.gif'>
+			<img v-if="logintype=='employer'" src='https://cdn.dribbble.com/users/3848091/screenshots/7827479/media/5f226eb6aa71d3b639a73d214e716db6.gif'>
+            <img v-else src="https://images.clipartlogo.com/files/istock/previews/9800/98006543-hand-holding-resume.jpg" alt="" style="width:75%">
 			</div>
 		</div>
 		<div class='login--right'>
-            <h1>Login Form</h1>
+            <h1 v-if="logintype=='employer'">Employer Login</h1>
+            <h1 v-show="logintype=='employee'">Fill out your profile</h1>
+       
 			<!-- <header>
 			    <h1>Login Form</h1>
 			<div class='set'>
@@ -52,10 +55,39 @@
 				<button id='next'>Next</button>
 				</div>
 			</footer> -->
-            <form action="">
+            <form v-show="logintype=='employer'" class="employer-login" action="">
                 <input type="text" placeholder="Username">
                 <div style="height:20px"></div>
                 <input type="password" placeholder="Password">
+                <div style="height:20px"></div>
+                <button>LOGIN</button>
+            </form>
+            <form v-show="logintype=='employee'" class="employee-form" action="">
+                <input type="text" placeholder="Name">
+                <div style="height:20px"></div>
+                <input type="text" placeholder="Enter your experience">
+                <div style="height:20px"></div>
+                <section>
+                    <div class="birthday">
+                        <label for="birthday">Birthday:</label>
+                        <input type="date" id="birthday" style="margin-left:10px">
+                    </div>
+                    
+                    <div class="gender-selection">
+                        <input type="radio" id="male" value="male" name="gender" v-model="gender"/>
+                        <label for="male" style="margin-right:10px">Male</label>
+                      
+                        <input type="radio" id="female" value="female" name="gender" v-model="gender"/>
+                        <label for="female">Female</label>
+                    </div>
+                </section>
+
+                <div style="height:10px"></div>
+                <div class="employee-form__skilladnedu">
+                    <input type="text" placeholder="Skills">
+                    <input type="text" placeholder="Education">
+                </div>
+          
                 <div style="height:20px"></div>
                 <button>LOGIN</button>
             </form>
@@ -114,7 +146,7 @@ export default{
         }
     }
 
-    form{
+    .employer-login{
         width: 55%;
         margin: auto;
         margin-top: 30px;
@@ -143,6 +175,77 @@ export default{
             }
         }
     }
+    .employee-form{
+        width: 55%;
+        margin: auto;
+        margin-top: 30px;
+        &>input{
+            display: block;
+            width: 100%;
+            border-radius: 20px;
+            padding: 10px 20px 10px 20px;
+            font-size: 20px;
+            outline: none;
+            border: none;
+            &:focus{
+                outline: none;
+                border: none;
+            }
+            background-color: rgb(230, 230, 230);
+            text-align: center;
+        }
+        &>button{
+            display: block;
+            width: 100%;
+            background-color: #c9f6ff;
+            padding: 10px 20px 10px 20px;
+            font-size: 20px;
+            outline: none;
+            // border: 5px solid #c9f6ff ;
+            color: black;
+            &:hover{
+                background-color: #acd6df;
+            }
+        }
+        &>section{
+            background-color: white;
+            height: 30px;
+
+            &>.birthday{
+                float: left;
+            }
+            &>.gender-selection{
+                float: right;
+            }
+        }
+
+        &__skilladnedu{
+            background-color: red;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            &>*{
+                display: block;
+                width: 90%;
+                border-radius: 20px;
+                padding: 10px 20px 10px 20px;
+                font-size: 20px;
+                outline: none;
+                border: none;
+                &:focus{
+                    outline: none;
+                    border: none;
+                }
+                background-color: rgb(230, 230, 230);
+       
+
+            }
+
+
+        }
+
+    }
     .job{
         width: 85%;
         padding-top: 20px;
@@ -151,4 +254,5 @@ export default{
             width: 100%;
         }
     }
+
 </style>
