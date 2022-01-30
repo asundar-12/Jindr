@@ -1,8 +1,10 @@
 // Express boilerplate
 const express = require("express")
 const {v4} = require("uuid")
+var cors = require('cors')
 const app = express()
 app.use(express.json())
+app.use(cors())
 // Set up firebase
 const admin = require("firebase-admin");
 const serviceAccount = require("./firebaseAPI.json");
