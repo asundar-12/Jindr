@@ -9,14 +9,14 @@
 		</div>
 		<div class='login--right'>
             <h1>Fill out job posting</h1>
-            <form action="">
+            <div id="myForm" >
                 <div class="company">
                     <label for='company'>Company</label>
 			        <input id='company' placeholder="Enter name of company" type='text'>
                 </div>
                 <div class="jobtitle">
                     <label for='jobtitle'>Job Title</label>
-			        <input id='jobtitle' placeholder="Enter the job title" type='text'>
+			        <input id='jobTitle' placeholder="Enter the job title" type='text'>
                 </div>
                 <div class="location">
                     <label for='location'>Location</label>
@@ -24,11 +24,11 @@
                 </div>
                 <div class="jobcategory">
                     <label for='jobcategory'>Job Category</label>
-			        <input id='jobcategory' placeholder="Enter job category" type='text'>
+			        <input id='jobCategory' placeholder="Enter job category" type='text'>
                 </div>
                 <div class="employmenttype">
                     <label for='employmenttype'>Employment Type</label>
-			        <input id='employmenttype' placeholder="Enter employment type" type='text'>
+			        <input id='employmentType' placeholder="Enter employment type" type='text'>
                 </div>
                 <div class="qualifications">
                     <label for='qualifications'>Qualifications</label>
@@ -36,41 +36,19 @@
                 </div>
                 <div class="jobdescription">
                     <label for='jobdescription'>Job Description</label>
-			        <input id='jobdescription' placeholder="Enter Job Description" type='text'>
+			        <input id='jobDescription' placeholder="Enter Job Description" type='text'>
                 </div>
                 
-                <button>Submit</button>
+                <button v-on:click="submit">Submit</button>
                 
-            </form>
-         
-			<!-- <div class='set'>
-			<div class='j_exp'>
-			<label for='j_exp'>Year's Of Experience Required</label>
-			<input id='j_exp' placeholder="Enter year's of experience required" type='text'>
-			</div>
-			<div class='j_qua'>
-			<label for='j_qua'>Qualifications</label>
-			<input id='j_qua' placeholder="Enter qualification" type='text'>
-			</div>
-			</div>
-			
-			<div class='set'>
-			<div class='j_emp'>
-			<label for='j_emp'>Employee Responsibilities</label>
-			<input id='j_emp' placeholder="Enter employee responsibilities" type='text'>
-			</div>
-			<div class='j_vi'>
-			<label for='j_vi'>Visa/Sponsorship Requirement</label>
-			<input id='j_vi' placeholder="Enter visa/sponsorship requirements" type='text'>
-			</div>
-			
-			</div> -->
+            </div>
+    
 		</div>
 	</div>
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
     name: "Login",
     data(){
@@ -79,12 +57,18 @@ export default {
         }
     },
     methods:{
-        employee(){
-            this.$router.push("/employee")
+        async submit(){
+            console.log("SUBMITTING");
+            let theform = document.getElementById('myForm');
+            let formData = new FormData(theform);
+            formData.append('jobposterId', 'sOViIBWYCYZzdcljF5Ll');
+            console.log(formData);
+            const fetchResponsePromise = await fetch("http://localhost:3000/jobposter/post-job", {
+                method: 'POST',
+                body: formData,
+            }).then(data => {console.log(data); });
         },
-        employer(){
-            this.$router.push("/employer")
-        }
+       
     },
     mounted(){
         this.logintype = this.$store.state.logintype
@@ -130,7 +114,7 @@ export default {
         }
     }
 
-    form{
+    #myForm{
         width: 80%;
         margin: auto;
         margin-top: 0px;
@@ -191,12 +175,10 @@ export default {
             grid-column-start: 1;
             grid-column-end: end;
             &:hover{
-                background-color: $primary-hover;
+                background-color: #a7dae4;
             }
       
         }
-
-
 
     }
     .job{
