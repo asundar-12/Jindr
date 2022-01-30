@@ -126,7 +126,7 @@ export default{
             font-size: 20px;
             outline: none;
             border: none;
-            background-color: rgb(230, 230, 230);
+            background-color: $input-colour;
             text-align: center;
         }
         &>button{
@@ -159,7 +159,7 @@ export default{
                 outline: none;
                 border: none;
             }
-            background-color: rgb(230, 230, 230);
+            background-color: $input-colour;
             text-align: center;
         }
         &>button{
@@ -206,7 +206,7 @@ export default{
                     outline: none;
                     border: none;
                 }
-                background-color: rgb(230, 230, 230);
+                background-color: $input-colour;
     
             }
 

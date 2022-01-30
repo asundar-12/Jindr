@@ -18,6 +18,7 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "../assets/styles.scss";
     main{
         height: 600px;
         width: 75%;

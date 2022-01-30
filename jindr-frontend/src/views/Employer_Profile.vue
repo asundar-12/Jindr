@@ -1,29 +1,6 @@
 <template>
 	<body>
-		<ul class="background">
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-		</ul>
+
 		<div class='signup-container'>
 		<div class='left-container'>
 			<h1>JOB POSTING CREATION</h1>
