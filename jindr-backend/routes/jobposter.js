@@ -7,20 +7,20 @@ router.use(express.json())
 var admin = require("firebase-admin");
 const db = admin.firestore(); 
 // // Firebase collections
-const employersDB = db.collection('Employers_List'); 
+const jobpostersDB = db.collection('Employers_List'); 
 const jobPostingsDB  = db.collection('Job_Postings'); 
+const jobseekersDB  = db.collection('Employee_Profile'); 
 
-
-// POST request for job poster login (http://localhost:3000/jobposter/login)
-router.post("/login", async (req, res) => {
-    // req example = {
-    //     "username": "jobposter1",
-    //     "password": "1234"
-    // }
-    const { username, password } = req.body
-    console.log(newJobEntry)
-    return res.json(newJobEntry)
-})
+// // POST request for job poster login (http://localhost:3000/jobposter/login)
+// router.post("/login", async (req, res) => {
+//     // req example = {
+//     //     "username": "jobposter1",
+//     //     "password": "1234"
+//     // }
+//     const { username, password } = req.body
+//     console.log(newJobEntry)
+//     return res.json(newJobEntry)
+// })
 
 
 // POST request for posting a job (http://localhost:3000/jobposter/post-job)
@@ -50,6 +50,32 @@ router.post("/post-job", async (req, res) => {
         jobPostOwner: null
     })
     return res.json({jobId: jobId, status:"success"})
+})
+
+
+router.get("/get-jobseeker", async (req, res) => {
+    const jobseeker = await jobseekersDB.where("jobposterViewed", "==", "false").limit(1).get()
+    var returnJob = null
+    if (jobseeker.empty) {
+        console.log("No matches")
+        return res.sendStatus(404)
+    } else {
+        jobseeker.forEach((doc) => {
+            console.log(doc.data())
+            return res.json(doc.data())
+        })
+    }
+})
+
+
+router.post("/rate-jobseeker", async (req, res) => {
+    console.log("OK")
+    const { jobseekerId, jobposterLiked } = req.body
+    const jobseeker = await jobseekersDB.doc(jobseekerId).update({
+        jobposterViewed: "true",
+        jobposterLiked: jobposterLiked
+    })
+    return res.sendStatus(200)
 })
 
 

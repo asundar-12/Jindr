@@ -7,9 +7,41 @@ router.use(express.json())
 var admin = require("firebase-admin");
 const db = admin.firestore(); 
 // // Firebase collections
-const employersDB = db.collection('Employers_List'); 
+const jobpostersDB = db.collection('Employers_List'); 
 const jobPostingsDB  = db.collection('Job_Postings'); 
+const jobseekersDB  = db.collection('Employee_Profile'); 
 
+
+router.post("/new-jobseeker", async (req, res) => {
+    // example req = {
+    //     "fName": "John", 
+    //     "lName": "Doe", 
+    //     "age": "21", 
+    //     "gender": "Male", 
+    //     "location": "NYC", 
+    //     "summary": "Summary", 
+    //     "experience": "10 years of Java", 
+    //     "education": "B.CS; MIT", 
+    //     "skills": "Java"
+    //     }
+    const { fName, lName, age, gender, location, summary, experience, education, skills } = req.body
+    const jobseekerId = v4()
+    const newJobseekerEntry = await jobseekersDB.doc(jobseekerId).set({
+        id: jobseekerId,
+        fName, 
+        lName, 
+        age, 
+        gender, 
+        location, 
+        summary, 
+        experience, 
+        education, 
+        skills,
+        jobposterViewed: "false",
+        jobposterLiked: "false",
+    })
+    return res.json({jobseekerId: jobseekerId, status:"success"})
+})
 
 
 router.get("/get-job", async (req, res) => {
@@ -25,7 +57,6 @@ router.get("/get-job", async (req, res) => {
             return res.json(doc.data())
         })
     }
-    // return returnJob
 })
 
 
@@ -45,16 +76,3 @@ router.post("/rate-job", async (req, res) => {
 
 
 module.exports = router
-
-
-// app.get('/:job', async (req, res) => {
-//     const token = req.params.token;
-//     const query = db.collection('Job_Postings').where('job', '==', token);
-//     const querySnapshot = await query.get();
-//     if (querySnapshot.size > 0) {
-//         res.json(querySnapshot.docs[0].data());
-//     }
-//     else {
-//         res.json({status: 'Not found'});
-//     }
-// })

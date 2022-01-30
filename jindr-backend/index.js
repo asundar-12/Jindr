@@ -11,9 +11,9 @@ admin.initializeApp({
 });
 const db = admin.firestore(); 
 // Firebase collections
-const employersDB = db.collection('Employers_List'); 
+const jobpostersDB = db.collection('Employers_List'); 
 const jobPostingsDB  = db.collection('Job_Postings'); 
-
+const jobseekersDB  = db.collection('Employee_Profile'); 
 
 
 // Routers
@@ -34,6 +34,29 @@ app.get("/get-job-by-id", async (req, res) => {
     }
 })
 
+// FUNCTION TO RESET THE VIEWS OF JOBSEEKERS BY JOBPOSTERS 
+const resetUsers = async () => {
+    const users = await jobseekersDB.get()
+    users.forEach((user) => {
+        user.ref.update({jobposterViewed: "false", jobPosterLiked: "false"})
+    })
+    console.log("users reseted")
+}
+resetUsers()
+// FUNCTION TO RESET THE VIEWS OF JOBS BY JOBSEEKER
+const resetJobPostings = async () => {
+    const jobs = await jobPostingsDB.get()
+    jobs.forEach((job) => {
+        job.ref.update({jobseekerViewed: "false", jobseekerLiked: "false"})
+    })
+    console.log("jobs reseted")
+}
+resetJobPostings()
+
+
+
+
+
 
 
 
@@ -44,21 +67,3 @@ const PORT = 3000
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 })
-
-
-
-
-
-
-// test firebase
-// const testfunc = async () => {
-//     const liam = employeeProfileDb.doc('lragozzine'); 
-//     await liam.set({
-//         first: 'Liam',
-//         last: 'Ragozzine',
-//         address: '133 5th St., San Francisco, CA',
-//         birthday: '05/13/1990',
-//         age: '30'
-//     });
-// }
-// testfunc()
