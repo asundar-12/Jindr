@@ -1,7 +1,7 @@
 <template>
 	<div class='login'>
 		<div class='login--left'>
-			<h1 v-if="type == 'employer'">JOB POSTING CREATION</h1>
+			<h1 v-if="logintype=='employer'">JOB POSTING CREATION</h1>
             <h1 v-else>EMPLOYEE'S PROFILE</h1>
 			<div class='job'>
 			<img src='https://cdn.dribbble.com/users/3848091/screenshots/7827479/media/5f226eb6aa71d3b639a73d214e716db6.gif'>
@@ -70,11 +70,11 @@ export default{
     name: "Login",
     data(){
         return{
-            type: 'employer'
+            logintype: "employer",
         }
     },
     mounted(){
-        this.type = this.$store.state.logintype
+        this.logintype = this.$store.state.logintype
     }
 }
 </script>

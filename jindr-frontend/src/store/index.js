@@ -5,7 +5,7 @@ export default createStore({
     logintype: "home"
   },
   mutations: {
-    changeLoginType(type){
+    changeLoginType(state,type){
       state.logintype = type
     }
   },

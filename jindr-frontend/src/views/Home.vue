@@ -27,7 +27,7 @@
 		<li></li>
 		<li></li>
 	</ul>
-	<button v-if="!front" class="back-button" v-on:click="employer">↩ Back</button>
+	<button v-if="!front" class="back-button" v-on:click="home">↩ Back</button>
 	<Login v-if="!front"/>
 	<main v-if="front">
 
@@ -64,26 +64,19 @@ export default {
 	methods:{
 		employee(){
 			// this.$router.push("/employee");
-			if(this.front){
-				this.front = false;
-				this.type = "employee"
-			}
-			else{
-				this.front = true;
-				this.type = "home"
-			}
+			this.front = false;
+			this.type = "employee"
+			this.$store.commit("changeLoginType", "employee");
 		},
 		employer(){
 			// this.$router.push("/employer");
-			if(this.front){
-				this.front = false;
-				this.type = "employer"
-			}
-			else{
-				this.front = true;
-				this.type = "home"
-			}
+			this.front = false;
+			this.type = "employer"
+			this.$store.commit("changeLoginType", "employer");
 		},
+		home(){
+			this.front = true;
+		}
 	}
 }
 </script>
