@@ -36,8 +36,7 @@ router.post("/post-job", async (req, res) => {
     // }
     const { jobTitle, company, location, jobCategory, employmentType, jobDescription, qualifications } = req.body
     const jobId = v4()
-    const newJobEntry = jobPostingsDB.doc(jobId)
-    await newJobEntry.set({
+    const newJobEntry = await jobPostingsDB.doc(jobId).set({
         id: jobId,
         jobTitle,
         company,
@@ -46,6 +45,8 @@ router.post("/post-job", async (req, res) => {
         employmentType,
         jobDescription,
         qualifications,
+        jobseekerViewed: [],
+        jobseekerLike: []
     })
     return res.json({jobId: jobId, status:"success"})
 })

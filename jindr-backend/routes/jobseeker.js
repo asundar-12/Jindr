@@ -12,10 +12,18 @@ const jobPostingsDB  = db.collection('Job_Postings');
 
 
 
-// router.get("/get-job", (req, res) => {
-//     const { username, jobCategory } = req.body
+router.get("/get-job", async (req, res) => {
+    const { jobseekerUsername, jobCategory } = req.body
+    var job = await jobPostingsDB.where("jobCategory", "==", jobCategory).where(jobseekerUsername, "not-in", "jobseekerViewed").get()
 
-// })
+    console.log(job)
+    if (job.empty) {
+        console.log("No matches")
+        return res.sendStatus(404)
+    } else {
+        res.json(job);
+    }
+})
 
 
 

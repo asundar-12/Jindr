@@ -19,18 +19,19 @@ const jobPostingsDB  = db.collection('Job_Postings');
 // Routers
 app.use("/jobseeker", require("./routes/jobseeker"))
 app.use("/jobposter", require("./routes/jobposter"))
+app.get("/", (req, res) => res.send("Backend is live"))
 
 // GET get any job by jobId (can be used by jobseeker and jobposter)
 app.get("/get-job-by-id", async (req, res) => {
     // req example = {"jobId": "76095db1-f75c-4ae9-8d6e-a24fd405a48f"}
     const { jobId } = req.body
-    const query = await jobPostingsDB.doc(jobId).get()
-    const job = query._fieldsProto
-    console.log(job)
-    if (job !== undefined) {
-        return res.json(job)
+    const job = await jobPostingsDB.doc(jobId).get()
+    if (job.empty || !job.exists) {
+        console.log("No matches")
+        return res.sendStatus(404)
+    } else {
+        res.json(job.data());
     }
-    return res.json({jobTitle:null, company:null, location:null, jobCategory:null, employmentType:null, jobDescription:null, qualifications:null})
 })
 
 
@@ -39,7 +40,7 @@ app.get("/get-job-by-id", async (req, res) => {
 
 
 
-const PORT = 4000
+const PORT = 3000
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 })
