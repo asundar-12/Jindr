@@ -89,6 +89,8 @@
                 </div>
           
                 <div style="height:20px"></div>
+                <input type="text" placeholder="Interests">
+                <div style="height:20px"></div>
                 <button>LOGIN</button>
             </form>
 		</div>
@@ -112,6 +114,7 @@ export default{
 </script>
 
 <style lang="scss" scoped>
+    @import "../assets/styles.scss";
     .login{
         width: 85%;
         height: 450px;
@@ -178,7 +181,7 @@ export default{
     .employee-form{
         width: 55%;
         margin: auto;
-        margin-top: 30px;
+        margin-top: 20px;
         &>input{
             display: block;
             width: 100%;
@@ -220,14 +223,15 @@ export default{
         }
 
         &__skilladnedu{
-            background-color: red;
+            
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 50px;
+            height: 40px;
             &>*{
                 display: block;
-                width: 90%;
+                width: 45%;
+                max-width: 90%;
                 border-radius: 20px;
                 padding: 10px 20px 10px 20px;
                 font-size: 20px;
