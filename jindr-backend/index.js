@@ -2,6 +2,9 @@
 const express = require("express")
 const {v4} = require("uuid")
 const app = express()
+let bodyParser = require("body-parser");
+app.use(bodyParser.json())
+
 app.use(express.json())
 // Set up firebase
 const admin = require("firebase-admin");
@@ -19,6 +22,7 @@ const jobseekersDB  = db.collection('Employee_Profile');
 // Routers
 app.use("/jobseeker", require("./routes/jobseeker"))
 app.use("/jobposter", require("./routes/jobposter"))
+
 app.get("/", (req, res) => res.send("Backend is live"))
 
 // GET get any job by jobId (can be used by jobseeker and jobposter)

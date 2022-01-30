@@ -2,7 +2,9 @@
 const express = require("express")
 const router = require("express").Router()
 const {v4} = require("uuid")
-router.use(express.json())
+let bodyParser = require("body-parser");
+router.use(express.json());
+router.use(bodyParser.json());
 // Set up firebase
 var admin = require("firebase-admin");
 const db = admin.firestore(); 
@@ -34,7 +36,10 @@ router.post("/post-job", async (req, res) => {
     //     "jobDescription": "Software Eng Job",
     //     "qualifications": "5 Years of Java"
     // } 
-    const { jobPosterId, jobTitle, company, location, jobCategory, employmentType, jobDescription, qualifications } = req.body
+    console.log(req);
+    const { jobposterId, jobTitle, company, location, jobCategory, employmentType, jobDescription, qualifications } = req.body;
+    console.log(jobposterId);
+    console.log(jobTitle);
     const jobId = v4()
     const newJobEntry = await jobPostingsDB.doc(jobId).set({
         id: jobId,
@@ -47,7 +52,7 @@ router.post("/post-job", async (req, res) => {
         qualifications,
         jobseekerViewed: "false",
         jobseekerLiked: "false",
-        jobPostOwner: jobPosterId
+        jobPostOwner: jobposterId
     })
     return res.json({jobId: jobId, status:"success"})
 })

@@ -3,6 +3,8 @@ const express = require("express")
 const router = require("express").Router()
 const {v4} = require("uuid")
 router.use(express.json())
+let bodyParser = require("body-parser");
+router.use(bodyParser.json())
 // Set up firebase
 var admin = require("firebase-admin");
 const db = admin.firestore(); 
