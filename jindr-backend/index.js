@@ -24,7 +24,7 @@ const testfunc = async () => {
         age: '30'
     });
 }
-testfunc()
+// testfunc()
 
 
 // Routers
