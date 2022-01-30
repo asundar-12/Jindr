@@ -42,16 +42,16 @@ const resetUsers = async () => {
     })
     console.log("users reseted")
 }
-resetUsers()
+// resetUsers()
 // FUNCTION TO RESET THE VIEWS OF JOBS BY JOBSEEKER
 const resetJobPostings = async () => {
     const jobs = await jobPostingsDB.get()
     jobs.forEach((job) => {
-        job.ref.update({jobseekerViewed: "false", jobseekerLiked: "false"})
+        job.ref.update({jobseekerViewed: "false", jobseekerLiked: "false", jobPostOwner: "sOViIBWYCYZzdcljF5Ll"})
     })
     console.log("jobs reseted")
 }
-resetJobPostings()
+// resetJobPostings()
 
 
 

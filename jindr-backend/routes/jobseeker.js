@@ -10,6 +10,7 @@ const db = admin.firestore();
 const jobpostersDB = db.collection('Employers_List'); 
 const jobPostingsDB  = db.collection('Job_Postings'); 
 const jobseekersDB  = db.collection('Employee_Profile'); 
+const matchesDB = db.collection("matches");
 
 
 router.post("/new-jobseeker", async (req, res) => {
@@ -62,16 +63,51 @@ router.get("/get-job", async (req, res) => {
 
 router.post("/rate-job", async (req, res) => {
     console.log("OK")
-    const { jobId, jobseekerLiked } = req.body
+    const { jobId, jobseekerId, jobseekerLiked } = req.body
     const job = await jobPostingsDB.doc(jobId).update({
         jobseekerViewed: "true",
         jobseekerLiked: jobseekerLiked
     })
+    checkMatch(jobId, jobseekerId)
     return res.sendStatus(200)
 })
 
+const checkMatch = async (jobId, jobseekerId) => {
+    console.log("checking for a match")
+    const job = await jobPostingsDB.doc(jobId).get()
+    const jobseeker = await jobseekersDB.doc(jobseekerId).get()
+    if (job.data().jobseekerLiked === "true" && jobseeker.data().jobposterLiked == "true") {
+        const matchId = v4()
+        const matchEntry = await matchesDB.doc(matchId).set({
+            id: matchId,
+            jobId: jobId,
+            jobseekerId: jobseekerId,
+            jobposterId: job.data().jobPostOwner
+        })
+        console.log(matchEntry)
+        console.log("match found")
+    } else {
+        console.log("no match")
+    }
+}
 
-
+router.get("/notify-matches", async (req, res) => {
+    console.log("checking for match notification")
+    const { jobseekerId } = req.body
+    const query = await matchesDB.where("jobseekerId", "==", jobseekerId).get()
+    if (query.empty) {
+        console.log("no notifications")
+        return res.json({length: 0})
+    } else {
+        notifyMatchesArray = []
+        query.forEach((match) => {
+            console.log(match.data())
+            notifyMatchesArray.push(match.data())
+        })
+        console.log(`${query.size} notifications`)
+        return res.json({length: query.size, notifyMatchesArray: notifyMatchesArray})
+    }
+})
 
 
 

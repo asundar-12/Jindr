@@ -33,8 +33,8 @@ router.post("/post-job", async (req, res) => {
     //     "employmentType": "Intern",
     //     "jobDescription": "Software Eng Job",
     //     "qualifications": "5 Years of Java"
-    // }
-    const { jobTitle, company, location, jobCategory, employmentType, jobDescription, qualifications } = req.body
+    // } 
+    const { jobPosterId, jobTitle, company, location, jobCategory, employmentType, jobDescription, qualifications } = req.body
     const jobId = v4()
     const newJobEntry = await jobPostingsDB.doc(jobId).set({
         id: jobId,
@@ -47,7 +47,7 @@ router.post("/post-job", async (req, res) => {
         qualifications,
         jobseekerViewed: "false",
         jobseekerLiked: "false",
-        jobPostOwner: null
+        jobPostOwner: jobPosterId
     })
     return res.json({jobId: jobId, status:"success"})
 })
