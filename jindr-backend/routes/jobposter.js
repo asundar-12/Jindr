@@ -45,8 +45,9 @@ router.post("/post-job", async (req, res) => {
         employmentType,
         jobDescription,
         qualifications,
-        jobseekerViewed: [],
-        jobseekerLike: []
+        jobseekerViewed: "false",
+        jobseekerLiked: "false",
+        jobPostOwner: null
     })
     return res.json({jobId: jobId, status:"success"})
 })

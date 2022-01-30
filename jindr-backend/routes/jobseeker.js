@@ -13,16 +13,30 @@ const jobPostingsDB  = db.collection('Job_Postings');
 
 
 router.get("/get-job", async (req, res) => {
-    const { jobseekerUsername, jobCategory } = req.body
-    var job = await jobPostingsDB.where("jobCategory", "==", jobCategory).where(jobseekerUsername, "not-in", "jobseekerViewed").get()
-
-    console.log(job)
+    const { jobCategory } = req.body
+    const job = await jobPostingsDB.where("jobCategory", "==", jobCategory).where("jobseekerViewed", "==", "false").limit(1).get()
+    var returnJob = null
     if (job.empty) {
         console.log("No matches")
         return res.sendStatus(404)
     } else {
-        res.json(job);
+        job.forEach((doc) => {
+            console.log(doc.data())
+            return res.json(doc.data())
+        })
     }
+    // return returnJob
+})
+
+
+router.post("/rate-job", async (req, res) => {
+    console.log("OK")
+    const { jobId, jobseekerLiked } = req.body
+    const job = await jobPostingsDB.doc(jobId).update({
+        jobseekerViewed: "true",
+        jobseekerLiked: jobseekerLiked
+    })
+    return res.sendStatus(200)
 })
 
 
