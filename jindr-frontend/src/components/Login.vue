@@ -17,7 +17,7 @@
                 <div style="height:20px"></div>
                 <input type="password" placeholder="Password">
                 <div style="height:20px"></div>
-                <button type="submit">LOGIN</button>
+                <button v-on:click="employer">LOGIN</button>
             </form>
             <form v-show="logintype=='employee'" class="employee-form" action="">
                 <input type="text" placeholder="Name">
@@ -67,6 +67,9 @@ export default{
     methods:{
         employee(){
             this.$router.push("/employee")
+        },
+        employer(){
+            this.$router.push("/employer")
         }
     },
     mounted(){
@@ -78,7 +81,7 @@ export default{
 <style lang="scss" scoped>
     @import "../assets/styles.scss";
     .login{
-        width: 85%;
+        width: 75%;
         height: 450px;
         position: absolute;
         top: 50%;
@@ -94,7 +97,7 @@ export default{
             height: 100%;
 
             & >h1{
-                padding: 20px 10px 20px 10px;
+                padding: 20px 20px 20px 20px;
         
             }
         }
@@ -112,7 +115,7 @@ export default{
     }
 
     .employer-login{
-        width: 55%;
+        width: 70%;
         margin: auto;
         margin-top: 30px;
         &>input{
@@ -141,7 +144,7 @@ export default{
         }
     }
     .employee-form{
-        width: 55%;
+        width: 70%;
         margin: auto;
         margin-top: 20px;
         &>input{

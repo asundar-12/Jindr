@@ -1,7 +1,8 @@
 <template>
     <main>
         <section>
-
+            <h1>Software Engineer</h1>
+            <p>Requires 5+ years of experience</p>
         </section>
         <div class="choose">
             <button class="like">Like</button>
@@ -30,7 +31,7 @@
         &>section{
             height: 90%;
             width: 100%;
-            background-color: antiquewhite;
+            background-color: #c9f6ff;
         }
         &>.choose{
             display: flex;

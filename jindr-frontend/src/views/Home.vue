@@ -156,7 +156,8 @@ export default {
     left: 0;
     margin: 0;
     padding: 0;
-    background: #6be1df;
+    // background: #6be1df;
+	background-color: #9ae7f7;
     overflow: hidden;
 	z-index: -2;
 }
