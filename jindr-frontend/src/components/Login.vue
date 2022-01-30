@@ -12,55 +12,12 @@
             <h1 v-if="logintype=='employer'">Employer Login</h1>
             <h1 v-show="logintype=='employee'">Fill out your profile</h1>
        
-			<!-- <header>
-			    <h1>Login Form</h1>
-			<div class='set'>
-			<div class='j_title'>
-			<label for='j_title'>Job Title   </label>
-			<input id='j_title' placeholder="Enter the job title" type='text'>
-			</div>
-			
-			</div>
-			<div class='set'>
-			<div class='j_exp'>
-			<label for='j_exp'>Year's Of Experience Required</label>
-			<input id='j_exp' placeholder="Enter year's of experience required" type='text'>
-			</div>
-			<div class='j_qua'>
-			<label for='j_qua'>Qualifications</label>
-			<input id='j_qua' placeholder="Enter qualification" type='text'>
-			</div>
-			</div>
-			
-			<div class='set'>
-			<div class='j_emp'>
-			<label for='j_emp'>Employee Responsibilities</label>
-			<input id='j_emp' placeholder="Enter employee responsibilities" type='text'>
-			</div>
-			<div class='j_vi'>
-			<label for='j_vi'>Visa/Sponsorship Requirement</label>
-			<input id='j_vi' placeholder="Enter visa/sponsorship requirements" type='text'>
-			</div>
-			
-			</div>
-			
-		
-			
-		
-			</header>
-
-			<footer>
-				<div class='set'>
-				<button id='back' v-on:click="home">Back</button>
-				<button id='next'>Next</button>
-				</div>
-			</footer> -->
             <form v-show="logintype=='employer'" class="employer-login" action="">
                 <input type="text" placeholder="Username">
                 <div style="height:20px"></div>
                 <input type="password" placeholder="Password">
                 <div style="height:20px"></div>
-                <button>LOGIN</button>
+                <button type="submit">LOGIN</button>
             </form>
             <form v-show="logintype=='employee'" class="employee-form" action="">
                 <input type="text" placeholder="Name">
@@ -91,7 +48,7 @@
                 <div style="height:20px"></div>
                 <input type="text" placeholder="Interests">
                 <div style="height:20px"></div>
-                <button>LOGIN</button>
+                <button v-on:click="employee">Sign Up</button>
             </form>
 		</div>
 	</div>
@@ -105,6 +62,11 @@ export default{
     data(){
         return{
             logintype: "employer",
+        }
+    },
+    methods:{
+        employee(){
+            this.$router.push("/employee")
         }
     },
     mounted(){
@@ -242,8 +204,7 @@ export default{
                     border: none;
                 }
                 background-color: rgb(230, 230, 230);
-       
-
+    
             }
 
 
