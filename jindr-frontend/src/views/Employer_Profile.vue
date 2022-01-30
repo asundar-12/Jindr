@@ -1,84 +1,82 @@
 <template>
 	<body>
-	<ul class="background">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
+		<ul class="background">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
 		</ul>
-	<div class='signup-container'>
-	  <div class='left-container'>
-	    <h1>
-	    
-	      JOB POSTING CREATION
-	    </h1>
-	    <div class='job'>
-	      <img src='https://cdn.dribbble.com/users/3848091/screenshots/7827479/media/5f226eb6aa71d3b639a73d214e716db6.gif'>
-	    </div>
-	  </div>
-	  <div class='right-container'>
-	    <header>
-	      <h1>Fill out job posting</h1>
-	      <div class='set'>
-		<div class='j_title'>
-		  <label for='j_title'>Job Title   </label>
-		  <input id='j_title' placeholder="Enter the job title" type='text'>
+		<div class='signup-container'>
+		<div class='left-container'>
+			<h1>JOB POSTING CREATION</h1>
+			<div class='job'>
+			<img src='https://cdn.dribbble.com/users/3848091/screenshots/7827479/media/5f226eb6aa71d3b639a73d214e716db6.gif'>
+			</div>
 		</div>
+		<div class='right-container'>
+			<header>
+			<h1>Fill out job posting</h1>
+			<div class='set'>
+			<div class='j_title'>
+			<label for='j_title'>Job Title   </label>
+			<input id='j_title' placeholder="Enter the job title" type='text'>
+			</div>
+			
+			</div>
+			<div class='set'>
+			<div class='j_exp'>
+			<label for='j_exp'>Year's Of Experience Required</label>
+			<input id='j_exp' placeholder="Enter year's of experience required" type='text'>
+			</div>
+			<div class='j_qua'>
+			<label for='j_qua'>Qualifications</label>
+			<input id='j_qua' placeholder="Enter qualification" type='text'>
+			</div>
+			</div>
+			
+			<div class='set'>
+			<div class='j_emp'>
+			<label for='j_emp'>Employee Responsibilities</label>
+			<input id='j_emp' placeholder="Enter employee responsibilities" type='text'>
+			</div>
+			<div class='j_vi'>
+			<label for='j_vi'>Visa/Sponsorship Requirement</label>
+			<input id='j_vi' placeholder="Enter visa/sponsorship requirements" type='text'>
+			</div>
+			
+			</div>
+			
 		
-	      </div>
-	      <div class='set'>
-		<div class='j_exp'>
-		  <label for='j_exp'>Year's Of Experience Required</label>
-		  <input id='j_exp' placeholder="Enter year's of experience required" type='text'>
-		</div>
-		 <div class='j_qua'>
-		  <label for='j_qua'>Qualifications</label>
-		  <input id='j_qua' placeholder="Enter qualification" type='text'>
-		</div>
-		</div>
+			
 		
-	      <div class='set'>
-		  <div class='j_emp'>
-		  <label for='j_emp'>Employee Responsibilities</label>
-		  <input id='j_emp' placeholder="Enter employee responsibilities" type='text'>
+			</header>
+
+			<footer>
+				<div class='set'>
+				<button id='back' v-on:click="home">Back</button>
+				<button id='next'>Next</button>
+				</div>
+			</footer>
 		</div>
-		 <div class='j_vi'>
-		  <label for='j_vi'>Visa/Sponsorship Requirement</label>
-		  <input id='j_vi' placeholder="Enter visa/sponsorship requirements" type='text'>
 		</div>
-		
-		</div>
-		
-	   
-	      
-	  
-	    </header>
-	    <footer>
-	      <div class='set'>
-		<button id='back' v-on:click="home">Back</button>
-		<button id='next'>Next</button>
-	      </div>
-	    </footer>
-	  </div>
-	</div>
 	</body>
 	</template>
 	
@@ -95,7 +93,7 @@
 	</script>
 	
 	<!-- Add "scoped" attribute to limit CSS to this component only -->
-	<style scoped>
+	<style lang="scss" scoped>
 	@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap");
 	* {
 	  box-sizing: border-box;
@@ -145,9 +143,12 @@
 	  transform: rotate(-45deg);
 	}
 	.left-container .job {
-	  bottom: -5px;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%,-40%);
 	  position: absolute;
 	  text-align: center;
+	  width: 80%;
 	}
 	.left-container .job:before {
 	  background: #c9f6ff;
@@ -161,11 +162,11 @@
 	}
 	.left-container img {
 	 
-	  width: 70%;
+	  width: 100%;
 	}
 	
 	.right-container {
-	  background: #08cbd1;
+	  background: white;
 	  display: grid;
 	  grid-template-areas: "." ".";
 	  width: 500px;

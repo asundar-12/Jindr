@@ -27,7 +27,9 @@
 		<li></li>
 		<li></li>
 	</ul>
-	<main>
+	<button v-if="!front" class="back-button" v-on:click="employer">↩ Back</button>
+	<Login v-if="!front"/>
+	<main v-if="front">
 
 		<header>
 			<h1>JINDR</h1>
@@ -47,15 +49,40 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-
+import Login from '@/components/Login.vue'
 export default {
 	name: 'Home',
+	data(){
+		return{
+			front: true,
+			type: "home"
+		}
+	},
+	components:{
+		Login,
+	},
 	methods:{
 		employee(){
-			this.$router.push("/employee");
+			// this.$router.push("/employee");
+			if(this.front){
+				this.front = false;
+				this.type = "employee"
+			}
+			else{
+				this.front = true;
+				this.type = "home"
+			}
 		},
 		employer(){
-			this.$router.push("/employer");
+			// this.$router.push("/employer");
+			if(this.front){
+				this.front = false;
+				this.type = "employer"
+			}
+			else{
+				this.front = true;
+				this.type = "home"
+			}
 		},
 	}
 }
@@ -63,6 +90,17 @@ export default {
 
 <style lang="scss" scoped>
 	@import "../assets/styles.scss";
+	.back-button{
+		position: absolute;
+		top: 40px;
+		left: 50px;
+		width: max-content;
+		height: max-content;
+		background-color: white;
+		border: none;
+		font-size: 20px;
+		padding: 10px 30px 10px 30px;
+	}
 	main{	
 		
 		height: 100%;
@@ -107,17 +145,17 @@ export default {
 	}
 
 	@keyframes animate {
-    0%{
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-        border-radius: 0;
-    }
-    100%{
-        transform: translateY(-1000px) rotate(720deg);
-        opacity: 0;
-        border-radius: 50%;
-    }
-}
+		0%{
+			transform: translateY(0) rotate(0deg);
+			opacity: 1;
+			border-radius: 0;
+		}
+		100%{
+			transform: translateY(-1000px) rotate(720deg);
+			opacity: 0;
+			border-radius: 50%;
+		}
+	}
 
 .background {
     position: fixed;

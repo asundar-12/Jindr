@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Employee from '../views/Employee_Profile.vue'
 import Employer from '../views/Employer_Profile.vue'
@@ -30,8 +30,9 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes
+  history: createWebHistory(),
+  routes:routes,
+
 })
 
 export default router
