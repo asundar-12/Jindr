@@ -49,9 +49,9 @@
 		  <label for='e_exp'>Experience</label>
 		  <input id='e_exp' placeholder="Enter your experience" type='text'>
 		</div>
-		<div class='e-birthday'>
-		  <label for='e-birthday'>Birthday</label>
-		  <input id='e-birthday' placeholder='MM/DD/YYYY' type='text'>
+		<div class='e-email'>
+		  <label for='e-email'>Email Address</label>
+		  <input id='e-email' placeholder='Enter your email address' type='text'>
 		</div>
 	      </div>
 	      <div class='set'>
